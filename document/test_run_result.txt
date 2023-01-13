@@ -1,0 +1,251 @@
+Xinxins-MBP:python xinxinhu$ ./petAPITest_script.sh
+=================================================================================== test session starts ===================================================================================
+platform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0 -- /Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/xihu2/Genpact/python
+plugins: performance-0.1.0
+collected 4 items
+
+testGet.py::testvalidateGetPetById FAILED                                                                                                                                           [ 25%]
+testGet.py::testvalidateGetPetByIdNegative PASSED                                                                                                                                   [ 50%]
+testGet.py::testvalidateGetPetByStatus PASSED                                                                                                                                       [ 75%]
+testGet.py::testvalidateGetPetByStatusNegative FAILED                                                                                                                               [100%]
+
+======================================================================================== FAILURES =========================================================================================
+_________________________________________________________________________________ testvalidateGetPetById __________________________________________________________________________________
+
+    def testvalidateGetPetById():
+>       assert getPetById('9223372036854626000') == 200
+E       AssertionError: assert 404 == 200
+E        +  where 404 = getPetById('9223372036854626000')
+
+testGet.py:104: AssertionError
+___________________________________________________________________________ testvalidateGetPetByStatusNegative ____________________________________________________________________________
+
+    def testvalidateGetPetByStatusNegative():
+>       assert getPetByStatusWithoutParam() == 400
+E       assert 200 == 400
+E        +  where 200 = getPetByStatusWithoutParam()
+
+testGet.py:126: AssertionError
+================================================================================= short test summary info =================================================================================
+FAILED testGet.py::testvalidateGetPetById - AssertionError: assert 404 == 200
+FAILED testGet.py::testvalidateGetPetByStatusNegative - assert 200 == 400
+=============================================================================== 2 failed, 2 passed in 3.19s ===============================================================================
+=================================================================================== test session starts ===================================================================================
+platform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0 -- /Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/xihu2/Genpact/python
+plugins: performance-0.1.0
+collected 11 items
+
+testPost.py::testPostPet[dog_1234-https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog-200] PASSED                                                                 [  9%]
+testPost.py::testPostPet[-http://www.dogphoto.com-400] FAILED                                                                                                                       [ 18%]
+testPost.py::testPostPet[dog_name--400] FAILED                                                                                                                                      [ 27%]
+testPost.py::testPostPet[--400] FAILED                                                                                                                                              [ 36%]
+testPost.py::testvalidatePostPet FAILED                                                                                                                                             [ 45%]
+testPost.py::testpostPetWithoutPhotoUrls FAILED                                                                                                                                     [ 54%]
+testPost.py::testpostPetWithoutName FAILED                                                                                                                                          [ 63%]
+testPost.py::testpostPetWithoutHeader PASSED                                                                                                                                        [ 72%]
+testPost.py::testpostPetWithoutPayload PASSED                                                                                                                                       [ 81%]
+testPost.py::testpostPetWithWrongKey FAILED                                                                                                                                         [ 90%]
+testPost.py::testpostPetImage PASSED                                                                                                                                                [100%]
+
+======================================================================================== FAILURES =========================================================================================
+________________________________________________________________________ testPostPet[-http://www.dogphoto.com-400] ________________________________________________________________________
+
+pet_name = '', photoUrls = 'http://www.dogphoto.com', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPostPet(pet_name, photoUrls, expected):
+>       assert postPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = postPet('', 'http://www.dogphoto.com')
+
+testPost.py:142: AssertionError
+_______________________________________________________________________________ testPostPet[dog_name--400] ________________________________________________________________________________
+
+pet_name = 'dog_name', photoUrls = '', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPostPet(pet_name, photoUrls, expected):
+>       assert postPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = postPet('dog_name', '')
+
+testPost.py:142: AssertionError
+___________________________________________________________________________________ testPostPet[--400] ____________________________________________________________________________________
+
+pet_name = '', photoUrls = '', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPostPet(pet_name, photoUrls, expected):
+>       assert postPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = postPet('', '')
+
+testPost.py:142: AssertionError
+___________________________________________________________________________________ testvalidatePostPet ___________________________________________________________________________________
+
+    def testvalidatePostPet():
+>       assert validatePostPet("dog_12345", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog") == True
+E       AssertionError: assert 'Get API failed!' == True
+E        +  where 'Get API failed!' = validatePostPet('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPost.py:148: AssertionError
+_______________________________________________________________________________ testpostPetWithoutPhotoUrls _______________________________________________________________________________
+
+    def testpostPetWithoutPhotoUrls():
+>       assert postPetWithoutPhotoUrls('dog_12345') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = postPetWithoutPhotoUrls('dog_12345')
+
+testPost.py:154: AssertionError
+_________________________________________________________________________________ testpostPetWithoutName __________________________________________________________________________________
+
+    def testpostPetWithoutName():
+>       assert postPetWithoutName('https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = postPetWithoutName('https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPost.py:160: AssertionError
+_________________________________________________________________________________ testpostPetWithWrongKey _________________________________________________________________________________
+
+    def testpostPetWithWrongKey():
+>       assert postPetWithWrongKey('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = postPetWithWrongKey('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPost.py:176: AssertionError
+================================================================================= short test summary info =================================================================================
+FAILED testPost.py::testPostPet[-http://www.dogphoto.com-400] - AssertionError: assert 200 == 400
+FAILED testPost.py::testPostPet[dog_name--400] - AssertionError: assert 200 == 400
+FAILED testPost.py::testPostPet[--400] - AssertionError: assert 200 == 400
+FAILED testPost.py::testvalidatePostPet - AssertionError: assert 'Get API failed!' == True
+FAILED testPost.py::testpostPetWithoutPhotoUrls - AssertionError: assert 200 == 400
+FAILED testPost.py::testpostPetWithoutName - AssertionError: assert 200 == 400
+FAILED testPost.py::testpostPetWithWrongKey - AssertionError: assert 200 == 400
+=============================================================================== 7 failed, 4 passed in 5.31s ===============================================================================
+=================================================================================== test session starts ===================================================================================
+platform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0 -- /Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/xihu2/Genpact/python
+plugins: performance-0.1.0
+collected 10 items
+
+testPut.py::testPutPet[dog_1234-https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog-200] PASSED                                                                   [ 10%]
+testPut.py::testPutPet[-http://www.dogphoto.com-400] FAILED                                                                                                                         [ 20%]
+testPut.py::testPutPet[dog_name--400] FAILED                                                                                                                                        [ 30%]
+testPut.py::testPutPet[--400] FAILED                                                                                                                                                [ 40%]
+testPut.py::testvalidatePutPet FAILED                                                                                                                                               [ 50%]
+testPut.py::testputPetWithoutPhotoUrls FAILED                                                                                                                                       [ 60%]
+testPut.py::testputPetWithoutName FAILED                                                                                                                                            [ 70%]
+testPut.py::testputPetWithoutHeader PASSED                                                                                                                                          [ 80%]
+testPut.py::testputPetWithoutPayload PASSED                                                                                                                                         [ 90%]
+testPut.py::testputPetWithWrongKey FAILED                                                                                                                                           [100%]
+
+======================================================================================== FAILURES =========================================================================================
+________________________________________________________________________ testPutPet[-http://www.dogphoto.com-400] _________________________________________________________________________
+
+pet_name = '', photoUrls = 'http://www.dogphoto.com', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPutPet(pet_name, photoUrls, expected):
+>       assert putPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = putPet('', 'http://www.dogphoto.com')
+
+testPut.py:128: AssertionError
+________________________________________________________________________________ testPutPet[dog_name--400] ________________________________________________________________________________
+
+pet_name = 'dog_name', photoUrls = '', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPutPet(pet_name, photoUrls, expected):
+>       assert putPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = putPet('dog_name', '')
+
+testPut.py:128: AssertionError
+____________________________________________________________________________________ testPutPet[--400] ____________________________________________________________________________________
+
+pet_name = '', photoUrls = '', expected = 400
+
+    @pytest.mark.parametrize("pet_name, photoUrls, expected",
+                             [("dog_1234", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog", 200),
+                              ("", "http://www.dogphoto.com", 400), ("dog_name", "", 400), ("", "", 400)])
+    def testPutPet(pet_name, photoUrls, expected):
+>       assert putPet(pet_name, photoUrls).status_code == expected
+E       AssertionError: assert 200 == 400
+E        +  where 200 = <Response [200]>.status_code
+E        +    where <Response [200]> = putPet('', '')
+
+testPut.py:128: AssertionError
+___________________________________________________________________________________ testvalidatePutPet ____________________________________________________________________________________
+
+    def testvalidatePutPet():
+>       assert validatePutPet("dog_12345", "https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog") == True
+E       AssertionError: assert 'Get API failed!' == True
+E        +  where 'Get API failed!' = validatePutPet('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPut.py:134: AssertionError
+_______________________________________________________________________________ testputPetWithoutPhotoUrls ________________________________________________________________________________
+
+    def testputPetWithoutPhotoUrls():
+>       assert putPetWithoutPhotoUrls('dog_12345') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = putPetWithoutPhotoUrls('dog_12345')
+
+testPut.py:140: AssertionError
+__________________________________________________________________________________ testputPetWithoutName __________________________________________________________________________________
+
+    def testputPetWithoutName():
+>       assert putPetWithoutName('https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = putPetWithoutName('https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPut.py:146: AssertionError
+_________________________________________________________________________________ testputPetWithWrongKey __________________________________________________________________________________
+
+    def testputPetWithWrongKey():
+>       assert putPetWithWrongKey('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog') == 400
+E       AssertionError: assert 200 == 400
+E        +  where 200 = putPetWithWrongKey('dog_12345', 'https://www.nationalgeographic.com/animals/mammals/facts/domestic-dog')
+
+testPut.py:162: AssertionError
+================================================================================= short test summary info =================================================================================
+FAILED testPut.py::testPutPet[-http://www.dogphoto.com-400] - AssertionError: assert 200 == 400
+FAILED testPut.py::testPutPet[dog_name--400] - AssertionError: assert 200 == 400
+FAILED testPut.py::testPutPet[--400] - AssertionError: assert 200 == 400
+FAILED testPut.py::testvalidatePutPet - AssertionError: assert 'Get API failed!' == True
+FAILED testPut.py::testputPetWithoutPhotoUrls - AssertionError: assert 200 == 400
+FAILED testPut.py::testputPetWithoutName - AssertionError: assert 200 == 400
+FAILED testPut.py::testputPetWithWrongKey - AssertionError: assert 200 == 400
+=============================================================================== 7 failed, 3 passed in 3.65s ===============================================================================
+=================================================================================== test session starts ===================================================================================
+platform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0 -- /Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/xihu2/Genpact/python
+plugins: performance-0.1.0
+collected 2 items
+
+testDelete.py::testvalidateDeletePetById PASSED                                                                                                                                     [ 50%]
+testDelete.py::testvalidateDeletePetByIdNegative PASSED                                                                                                                             [100%]
+
+==================================================================================== 2 passed in 2.29s ====================================================================================
+Xinxins-MBP:python xinxinhu$
