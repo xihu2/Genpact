@@ -17,7 +17,7 @@
 	* testGet.py is testing all the functionalities for Get API
 	* testPost.py is testing all the functionalities for Post API
 	* testPut.py is testing all the functionalities for Put API
-  * testDelete.py is testing all the functionalities for Delete API
+  	* testDelete.py is testing all the functionalities for Delete API
 	* petAPITest_script.sh is the shell scripts to run all above tests together
 
 * all documentations are under Genpact/documents directory
