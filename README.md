@@ -20,9 +20,9 @@
   	* testDelete.py is testing all the functionalities for Delete API
 	* petAPITest_script.sh is the shell scripts to run all above tests together
 
-* all documentations are under Genpact/documents directory
+* all documentations are under Genpact/document directory
 	* TestUseCases.docx contains the test plan and the details about test cases
-	* BugList.xlsx contains the list of the bugs
+	* PetAPIBugList.xlsx contains the list of the bugs
 	* test_run_Results.txt contains the Terminal run result for all the test cases
 
 	
