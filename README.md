@@ -21,12 +21,13 @@
   	* testDelete.py is testing all the functionalities for Delete API
 	* petAPITest_script.sh is the shell scripts to run all above tests together
 	* testUI.py is testing all UI Web pages
-	* UITest_script.sh
+	* UITest_script.sh is the shell scripts to run all the UI web test
 
 * all documentations are under Genpact/document directory
-	* TestUseCases.docx contains the test plan and the details about test cases
-	* PetAPIBugList.xlsx contains the list of the bugs
-	* test_run_Results.txt contains the Terminal run result for all the test cases
+	* Pet_API_test_plan.pdf contains the test plan and the details about test cases for Pet API test project
+	* UI_Web_test_plan.pdf contains the test plan and the details about test cases for UI Web test project
+	* BugList.pdf contains the list of the bugs
+	* test_run_Results.txt contains the Terminal run results for all the test cases in both Pet API project and UI Web project
 
 	
 
