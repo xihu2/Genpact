@@ -36,7 +36,7 @@
 	* $ pytest testGet.py -v
  	* $ pytest testPost.py -v
  	* $ pytest testPut.py -v
-        * $ pytest testDelete.py -v
+	* $ pytest testDelete.py -v
 	* $ pytest testUI.py -v
  
 * run shell script to run all the API test cases under Genpact/python
