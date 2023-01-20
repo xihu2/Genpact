@@ -249,3 +249,20 @@ testDelete.py::testvalidateDeletePetByIdNegative PASSED                         
 
 ==================================================================================== 2 passed in 2.29s ====================================================================================
 Xinxins-MBP:python xinxinhu$
+Xinxins-MBP:python xinxinhu$
+Xinxins-MBP:python xinxinhu$
+Xinxins-MBP:python xinxinhu$ ./UITest_script.sh
+==================================================== test session starts =====================================================
+platform darwin -- Python 3.11.1, pytest-7.2.0, pluggy-1.0.0 -- /Library/Frameworks/Python.framework/Versions/3.11/bin/python3
+cachedir: .pytest_cache
+rootdir: /Users/xinxinhu/xihu2/Genpact/python
+plugins: performance-0.1.0
+collected 4 items
+
+testUI.py::testHomegainPage PASSED                                                                                     [ 25%]
+testUI.py::testZipCodePage PASSED                                                                                      [ 50%]
+testUI.py::testTypeofRealEstatePage PASSED                                                                             [ 75%]
+testUI.py::testSearchHomeValuePage PASSED                                                                              [100%]
+
+===================================================== 4 passed in 15.54s =====================================================
+Xinxins-MBP:python xinxinhu$
